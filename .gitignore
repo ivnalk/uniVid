@@ -1,0 +1,9 @@
+__pycache__
+uniVid/__pycache__
+uniVid/libs/ffmpeg/linux
+uniVid/libs/ffmpeg/win
+uniVid/uniVid/__pycache__
+union.mp4
+_build/pyinstaller/build
+_build/pyinstaller/dist
+_build/pyinstaller/uniVid_ffmpeg.zip

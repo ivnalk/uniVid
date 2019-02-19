@@ -1,0 +1,12 @@
+<RCC>
+  <qresource prefix="img">
+    <file>images/add_icon108x112.png</file>
+    <file>images/del_icon108x112.png</file>
+    <file>images/icon_up_pushed.png</file>
+    <file>images/icon_up_selected.png</file>
+    <file>images/icon_dw.png</file>
+    <file>images/icon_up.png</file>
+    <file>images/uniVid_wicon.png</file>
+    <file>images/uniVid_icon.png</file>
+  </qresource>
+</RCC>
