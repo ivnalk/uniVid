@@ -31,8 +31,8 @@ class UnidorThread(QtCore.QThread):
 
         if os.name == 'nt':
             P_OS = 'win'
-            cmdFf = 'ffmpeg.exe'
-            cmdFp = 'ffprobe.exe'
+            cmd_ffmpeg = 'ffmpeg.exe'
+            cmd_ffprobe = 'ffprobe.exe'
         else:
             P_OS = 'linux'
             cmd_ffmpeg = 'ffmpeg'
