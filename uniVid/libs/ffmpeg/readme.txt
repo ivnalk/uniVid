@@ -1,1 +1,0 @@
-Use build in /_build/pyinstaller/ to download bin files

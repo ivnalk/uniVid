@@ -11,7 +11,7 @@ class UnidorThread(QtCore.QThread):
     
     signaler = QtCore.pyqtSignal(int, str)
 
-    def __init__(self, videos, output):
+    def __init__(self, videos, output, app_path):
         QtCore.QThread.__init__(self)
         self.videos  = videos
         self.output  = output
@@ -37,9 +37,9 @@ class UnidorThread(QtCore.QThread):
             P_OS = 'linux'
             cmd_ffmpeg = 'ffmpeg'
             cmd_ffprobe = 'ffprobe'
-        
-        self.ffmpeg  = os.path.join( bundle_dir, 'libs/ffmpeg/%s/%s/%s' % (P_OS, P_AR, cmd_ffmpeg) )
-        self.ffprobe = os.path.join( bundle_dir, 'libs/ffmpeg/%s/%s/%s' % (P_OS, P_AR, cmd_ffprobe) )
+
+        self.ffmpeg  = os.path.join( app_path, 'bin/ffmpeg/%s/%s/%s' % (P_OS, P_AR, cmd_ffmpeg) )
+        self.ffprobe = os.path.join( app_path, 'bin/ffmpeg/%s/%s/%s' % (P_OS, P_AR, cmd_ffprobe) )
 
 
     def run(self):

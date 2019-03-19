@@ -56,16 +56,22 @@ if sys.platform == 'win32':
 signal.signal(signal.SIGINT, signal.SIG_DFL)
 signal.signal(signal.SIGTERM, signal.SIG_DFL)
 
+if hasattr(sys, 'frozen'):
+    basis = sys.executable
+else:
+    basis = sys.argv[0]
+app_path = os.path.split(basis)[0]
+
 if getattr(sys, 'frozen', False):
     bundle_dir = sys._MEIPASS
 else:
     bundle_dir = os.path.dirname(os.path.abspath(__file__))
+
 pathGUI = os.path.join( bundle_dir, 'ui/forms/wndMain.ui' )
 
 ventana = uic.loadUiType(pathGUI)[0]
 
 class wndMain(QMainWindow, ventana):
-    EXIT_CODE_REBOOT = 666
 
     def __init__(self, parent=None):
         QMainWindow.__init__(self, parent)
@@ -236,7 +242,7 @@ class wndMain(QMainWindow, ventana):
             # Listar archivos
             archivos =  [str(self.lstArchivos.item(i).text()) for i in range(self.lstArchivos.count())]
 
-            self.union = UnidorThread(archivos, fileOutput)
+            self.union = UnidorThread(archivos, fileOutput, app_path)
             self.union.signaler.connect(self.on_UniendoArchivos)
             self.threads.append(self.union)
             self.union.start()
@@ -331,11 +337,6 @@ class wndMain(QMainWindow, ventana):
         self.btnUnir.setEnabled(True)
         self.btnLimpiar.setEnabled(True)
         
-    @pyqtSlot()
-    def reboot(self) -> None:
-        qApp.exit(wndMain.EXIT_CODE_REBOOT)
-
-
     def dragEnterEvent(self, event):
         if event.mimeData().hasUrls():
             event.accept()
